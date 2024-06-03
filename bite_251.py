@@ -9,7 +9,7 @@ def basic_series():
 
 def float_series():
     start = 0.000
-    end = 0.000
+    end = 1.000
     step = 0.001
     arr = []
     while start <= end:
