@@ -1,0 +1,2 @@
+print(type({*{}}))
+#class <'set'>
