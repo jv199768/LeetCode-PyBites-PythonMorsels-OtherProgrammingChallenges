@@ -1,0 +1,26 @@
+# Write your MySQL query statement below
+SELECT
+    a.product_id,
+    a.first_year,
+    b.quantity,
+    b.price
+FROM
+(SELECT
+    product_id,
+    min(year) AS first_year
+FROM
+    Sales as s 
+GROUP BY
+    product_id) a
+LEFT JOIN (
+SELECT
+    product_id,
+    year,
+    quantity,
+    price
+FROM
+    Sales as s 
+) b
+on a.product_id = b.product_id
+WHERE
+    a.first_year = b.year AND a.product_id = b.product_id
