@@ -1,0 +1,13 @@
+TypeScript Error Codes
+Crack the code to your compiler problems with this ultimate list of common TypeScript errors. Each entry includes the faulty code and its fixed version, ensuring you can quickly resolve any issue and get back to coding.
+
+Boost your productivity even further by installing the Pretty TypeScript Errors - VS Code Extension to see the error translations directly in your IDE.
+
+All errors are categorized by the TypeScript team into the following ranges:
+
+1xxx for syntactic errors
+2xxx for semantic errors
+4xxx for declaration emit errors
+5xxx for compiler options errors
+6xxx for command line errors
+7xxx for type errors
