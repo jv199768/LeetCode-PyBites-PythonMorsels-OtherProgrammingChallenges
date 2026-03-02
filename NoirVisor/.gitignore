@@ -1,0 +1,66 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+*.lib
+
+# Binary Resources
+*.res
+RC*
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Extra Compiled Codes
+*.cod
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.sys
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.efi
+*.img
+*.bin
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Compiler Logs
+*.log
+
+# Rust outputs
+target/
+
+bin/
