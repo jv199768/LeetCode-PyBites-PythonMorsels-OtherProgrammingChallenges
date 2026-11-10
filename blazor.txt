@@ -1,0 +1,61 @@
+using BlazorApp3.Shared;
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using BlazorApp3.Server.MyRandom;
+ 
+namespace BlazorApp3.Server.Controllers
+{
+    @[ApiController]
+    [Route("[controller]")]
+    public class PatientsController
+    {
+        private readonly ILogger<PatientsController> logger;
+        private Dictionary<string, Patient> patientsCollection; // Collection of patients, instead of real DB
+ 
+        public PatientsController(ILogger<PatientsController> logger)
+        {
+            this.logger = logger;
+            GenerateRandomData(100);
+        }
+ 
+        // Generate random data
+        void GenerateRandomData(int numberOfRecords)
+        {
+            patientsCollection = new Dictionary<string, Patient>();
+            for(int i=0; i<numberOfRecords; i++)
+            {
+                Patient p = new Patient();
+                p.Id = ThreadSafeSeedOnceRandom.NextAsciiString(12, 12, true);
+                p.Name = RandomTextLoremIpsum.GetRandomWord() + " " +  RandomTextLoremIpsum.GetRandomWord();
+                p.Address = RandomTextLoremIpsum.GetRandomText(20, 100);
+                p.Remarks = RandomTextLoremIpsum.GetRandomText(0, 2000);
+                p.Priority = ThreadSafeSeedOnceRandom.Next(1, 10);
+                p.BirthDate = ThreadSafeSeedOnceRandom.NextDate(true, false);
+                p.Gender = ThreadSafeSeedOnceRandom.Next(1, 2)==1?"Male":"Female";
+                patientsCollection.Add(p.Id, p);
+            }
+        }
+ 
+        @[HttpGet]
+        public IEnumerable<Patient> Get()
+        {
+            Console.WriteLine("PatientsController.Get() called");
+ 
+            return patientsCollection.Values;
+        }
+ 
+        @[HttpPost]
+        public ActionResult<APIResult> Update(Patient patient)
+        {
+            Console.WriteLine("PatientsController.Update() called " + patient.ToString());
+ 
+            // Save the data to the database...
+            patientsCollection.Add(patient.Id, patient);
+ 
+            // Return JSON status result
+            return new APIResult(1, "Successfully updated!");
+        }
+    }
+}
